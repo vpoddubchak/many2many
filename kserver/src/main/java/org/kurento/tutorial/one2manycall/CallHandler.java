@@ -93,6 +93,8 @@ public class CallHandler extends TextWebSocketHandler {
 
   public static String RECORDING_EXT = ".webm";
 
+  public static String EsServerWss = "ws://ec2-52-213-127-53.eu-west-1.compute.amazonaws.com:3000";
+
   @Override
   public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     JsonObject jsonMessage = gson.fromJson(message.getPayload(), JsonObject.class);
@@ -171,7 +173,7 @@ public class CallHandler extends TextWebSocketHandler {
   private boolean CheckToken(String tokenToCheck){
     boolean bResult = false;
     try {
-      URI uri = new URI("ws://ec2-52-213-7-108.eu-west-1.compute.amazonaws.com:3000");
+      URI uri = new URI(EsServerWss);
       ChatClientEndpoint client = new ChatClientEndpoint(uri);
 
       String sMessage = "{\"type\":\"tokencheck\", \"token\":\"" + tokenToCheck + "\"}";
@@ -362,7 +364,7 @@ public class CallHandler extends TextWebSocketHandler {
     UserSession presenterUserSession = registry.getBySession(session);
     if (presenterUserSession != null && presenterUserSession.getSession().getId().equals(sessionId)) {
       //Stop recording
-      presenterUserSession.stop();
+      presenterUserSession.stop(EsServerWss);
 
       if (viewers.containsKey(sessionId)){
         // It is presenter. lets stop all his viewers

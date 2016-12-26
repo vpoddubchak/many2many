@@ -88,7 +88,7 @@ public class UserSession {
     webRtcEndpoint.addIceCandidate(candidate);
   }
 
-  public void stop() {
+  public void stop(String sServerPath) {
     if (recorderEndpoint != null) {
       final CountDownLatch stoppedCountDown = new CountDownLatch(1);
       ListenerSubscription subscriptionId = recorderEndpoint
@@ -108,7 +108,7 @@ public class UserSession {
         log.error("Exception while waiting for state change", e);
       }
       recorderEndpoint.removeStoppedListener(subscriptionId);
-      Uploader uploader = new Uploader(filePath);
+      Uploader uploader = new Uploader(filePath, sServerPath);
     }
   }
 
