@@ -93,7 +93,7 @@ public class CallHandler extends TextWebSocketHandler {
 
   public static String RECORDING_EXT = ".webm";
 
-  public static String EsServerWss = "ws://ec2-52-213-127-53.eu-west-1.compute.amazonaws.com:3000";
+  public static String EsServerWss = "ws://127.0.0.1:3000";
 
   @Override
   public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
