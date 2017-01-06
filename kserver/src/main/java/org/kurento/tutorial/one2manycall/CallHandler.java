@@ -232,7 +232,7 @@ public class CallHandler extends TextWebSocketHandler {
       WebRtcEndpoint presenterWebRtc = presenterUserSession.getWebRtcEndpoint();
 
       presenterWebRtc.setMaxVideoRecvBandwidth(3000);
-      presenterWebRtc.setMinVideoRecvBandwidth(1000);
+      presenterWebRtc.setMinVideoRecvBandwidth(300);
 
       /*_composite = new Composite.Builder(pipeline).build();
       _hubport1 = new HubPort.Builder(_composite).build();
@@ -322,7 +322,7 @@ public class CallHandler extends TextWebSocketHandler {
       WebRtcEndpoint nextWebRtc = new WebRtcEndpoint.Builder(pipeline).build();
 
       nextWebRtc.setMaxVideoSendBandwidth(4000);
-      nextWebRtc.setMinVideoSendBandwidth(1000);
+      nextWebRtc.setMinVideoSendBandwidth(300);
 
       nextWebRtc.addIceCandidateFoundListener(new EventListener<IceCandidateFoundEvent>() {
 
